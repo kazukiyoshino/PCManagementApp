@@ -21,6 +21,6 @@
 \i C:/Users/yoshino/Documents/PCManagementApp/PCManagement_SQL/PC/insert/use_category.sql
 \i C:/Users/yoshino/Documents/PCManagementApp/PCManagement_SQL/PC/insert/storage_category.sql
 \i C:/Users/yoshino/Documents/PCManagementApp/PCManagement_SQL/PC/insert/pc_category.sql
-\i C:/Users/yoshino/Documents/PCManagementApp/PCManagement_SQL/PC/insert/storage_category.sql
+\i C:/Users/yoshino/Documents/PCManagementApp/PCManagement_SQL/PC/insert/cpu_category.sql
 \i C:/Users/yoshino/Documents/PCManagementApp/PCManagement_SQL/PC/insert/os_category.sql
 \i C:/Users/yoshino/Documents/PCManagementApp/PCManagement_SQL/unit/insert/byte_unit.sql

@@ -1,6 +1,16 @@
 package com.model.account;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "account")
 public class AccountID {
+
+	@Id
+	@Column(name = "account_id")
 	private String id ;
 
 	public AccountID() {

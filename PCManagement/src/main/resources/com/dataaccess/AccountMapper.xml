@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.dataaccess.AccountMapper">
 
 	<select id = "findByUsername" parameterType = "String" resultMap = "AccountResultMap">
-		select * from accountId where account_id = #{username}
+		select * from account.account where account_id = #{username}
 	</select>
 
-	<resultMap id="AccountResultMap" type="com.model.Account">
+	<resultMap id="AccountResultMap" type="com.model.account.Account">
         <id property="username" column="account_id" />
         <result property="password" column="account_password" />
         <result property="authority" column="role_name" />
     </resultMap>
+</mapper>

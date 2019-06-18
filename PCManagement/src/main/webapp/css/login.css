@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+html{
+	text-align:center;
+}
+.title{
+	text-align:center;
+	vertical-align: middle;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+
+}
+.submit_button_div{
+	margin-top:40px;
+
+}
+.header{
+	height : 100px;
+	background-color: #42afe3;
+}
+.input_login{
+	width:400px;
+	height:40px;
+}
+.input_password{
+	width:400px;
+	height:40px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Login</title>
+<style>
+.alert-danger{color:red;}
+</style>
+<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body>
+
+<header class="header">
+<h1 class ="title">PC端末管理システム</h1>
+</header>
+
+<form th:action="@{/login}" method="post">
+    <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+            class="alert-danger">
+        <span th:text="ユーザ名またはパスワードに誤りがあります"></span>
+    </div>
+    <div>
+    	<div class="loginID">ログインID：</div>
+    	<input class ="input_login" type="text" name="username" autofocus="autofocus" />
+    </div>
+    <div>
+    	<div class="password">パスワード：</div>
+    	<input class="input_password" type="password" name="password" />
+    </div>
+    <div class="submit_button_div">
+    	<p><input type="submit" class = "button is-primary is-large" value="ログイン" /></p>
+    </div>
+</form>
+</body>
+</html>

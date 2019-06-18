@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
@@ -34,12 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-//              .failureUrl("/login-error")
+                .failureUrl("/login")
                 .defaultSuccessUrl("/top")
                 .permitAll()
                 .and()
             .logout()
-                // ログアウトでログインページに戻る
+                // ログアウトでログインページへ
                 .logoutSuccessUrl("/login")
                 // セッションを破棄
                 .invalidateHttpSession(true)

@@ -1,9 +1,18 @@
 package com.dataaccess;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.model.account.Account;
+import com.model.account.AccountRepository;
 
-public interface AccountDataAccess extends JpaRepository<Account, String> {
-	    public Account findByUsername(String username);
+@Repository("accountRepository")
+public class AccountDataAccess implements AccountRepository {
+
+	@Autowired
+	AccountMapper accountMapper;
+
+	public Account findByUsername(String username) {
+		return accountMapper.findByUsername(username);
+	}
 
 }

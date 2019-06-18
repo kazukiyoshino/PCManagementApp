@@ -13,6 +13,7 @@ import com.model.account.Account;
 	public class AccountService implements UserDetailsService {
 	  @Autowired
 	  private AccountDataAccess accountDataAccess;
+
 	  @Override
 	  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 	    if (username == null || username.isEmpty()) {
@@ -22,7 +23,7 @@ import com.model.account.Account;
 	    if (userInfo == null) {
 	      throw new UsernameNotFoundException("");
 	    }
-	    return (UserDetails) userInfo;
+	    return  userInfo;
 	  }
 	}
 

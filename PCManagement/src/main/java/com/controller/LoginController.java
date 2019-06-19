@@ -1,6 +1,4 @@
 package com.controller;
-import static org.springframework.web.bind.annotation.RequestMethod.*;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,7 +10,7 @@ public class LoginController {
 			return "redirect:/top";
 	}
 
-	@RequestMapping(value = "/login",method = {GET,POST})
+	@RequestMapping(value = "/login")//,method = {GET,POST})
 	public String login() {
 		return "login";
 	}

@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -49,6 +50,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         //ＤＢによる独自認証
-        auth.userDetailsService(userDetailsService);
+        auth.userDetailsService(userDetailsService)
+        .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
+
+    //AuthenticationManager（認証処理）の設定
+    //jdbcAuthentication()を実行したDBから取得するための設定を行う
+//    @Override
+//    @Autowired
+//    protected void configure(AuthenticationManagerBuilder auth)
+//            throws Exception {
+//        auth.jdbcAuthentication()
+//        	.passwordEncoder(new BCryptPasswordEncoder())//passwordの暗号化方式の指定。ここでは推奨されているBCryptを指定
+//        	.dataSource(dataSource)//DataSourceの設定
+//        	.usersByUsernameQuery(USER_QUERY)//認証情報取得SQLの設定
+//        	.authoritiesByUsernameQuery(AUTHORITY_QUERY);//認可情報取得SQLの設定
+//    }
 }

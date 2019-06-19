@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-//@Entity
-//@Table(name = "account.account")
 public class Account implements UserDetails{
 	public enum Authority {ROLE_USER, ROLE_ADMIN};
 
-//	@Column(name = "account_id")
+	@NotBlank
 	private String username;
-//	@Column(name = "account_password")
+	@NotBlank
 	private String password;
-//	@Column(name = "role_name")
+
 	private Authority authority;
 
 
@@ -53,22 +53,22 @@ public class Account implements UserDetails{
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		return true;
 	}
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		return true;
 	}
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		return true;
 	}
 	@Override
 	public boolean isEnabled() {
 		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		return true;
 	}
 
 

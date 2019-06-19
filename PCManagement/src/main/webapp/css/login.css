@@ -4,26 +4,62 @@ html{
 	text-align:center;
 }
 .title{
-	text-align:center;
-	vertical-align: middle;
-	display:flex;
-	align-items: center;
-	justify-content: center;
-
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#FFFFFF;
 }
+
+.error{
+	position:relative;
+	height :150px;
+}
+
 .submit_button_div{
 	margin-top:40px;
-
 }
 .header{
 	height : 100px;
 	background-color: #42afe3;
+	position:relative
 }
 .input_login{
+	font-size:inherit;
 	width:400px;
-	height:40px;
+	height:50px;
+}
+.loginID{
+	font-size: 30px;
+}
+.password{
+	font-size: 30px;
 }
 .input_password{
+	font-size:inherit;
 	width:400px;
-	height:40px;
+	height:50px;
+}
+.alert-danger{
+	font-size:18px;
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pocket{
+	margin:100px;
+}
+.form{
+	ma
 }

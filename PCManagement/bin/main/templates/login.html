@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Login</title>
+<style>
+.alert-danger{color:red;}
+</style>
+<link rel="stylesheet" href="/css/bulma-0.7.5/css/bulma.css">
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.css">-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+
+<header class="header">
+<h1 class ="title">PC端末管理システム</h1>
+</header>
+
+<form th:action="@{/login}" method="post">
+	<div class = "error">
+    	<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"class="alert-danger">
+        	<p  th:text  ="ログインIDとパスワードを確認し、再度お試し下さい。"></p>
+    	</div>
+    </div>
+
+    <div></div>
+
+ <div class="form">
+    <div class = "columns is-multiline">
+    	<div class="column is-one-quarter"></div>
+    	<div class="culumn">
+    		<div class="loginID">ログインID：
+    		<input class ="input_login" type="text" name="username" autofocus="autofocus" />
+    		</div>
+    	</div>
+    	<div class="column is-one-quarter"></div>
+    </div>
+
+	<div class="pocket"></div>
+
+	<div class = "columns is-multiline">
+    	<div class="column is-one-quarter"></div>
+    	<div class="culumn">
+    		<div class="password">パスワード：
+    		<input class="input_password" type="password" name="password" />
+    		</div>
+    	</div>
+    	<div class="column is-one-quarter"></div>
+    </div>
+
+    <div class="pocket"></div>
+
+    <div class="submit_button_div">
+    	<p><input type="submit" class = "button is-primary is-large" value="ログイン" /></p>
+    </div>
+  </div>
+
+</form>
+</body>
+</html>

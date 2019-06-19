@@ -1,40 +1,75 @@
 package com.model.account;
 
-public class Account {
-	private AccountID accountID;
-	private AccountPassword accountPassword;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
+import javax.validation.constraints.NotBlank;
 
-	public Account() {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-	}
+public class Account implements UserDetails{
+	public enum Authority {ROLE_USER, ROLE_ADMIN};
 
-	public Account(AccountID accountID,AccountPassword accountPassword) {
-		this.accountID = accountID;
-		this.accountPassword = accountPassword;
-	}
+	@NotBlank
+	private String username;
+	@NotBlank
+	private String password;
 
-	public AccountID getAccountID() {
-		return accountID;
-	}
+	private Authority authority;
 
-	public void setAccountID(AccountID accountID) {
-		this.accountID = accountID;
-	}
-
-	public AccountPassword getAccountPassword() {
-		return accountPassword;
-	}
-
-	public void setAccountPassword(AccountPassword accountPassword) {
-		this.accountPassword = accountPassword;
-	}
 
 	@Override
-	public String toString() {
-		return "Account [accountID=" + accountID + ", accountPassword=" + accountPassword + "]";
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO 自動生成されたメソッド・スタブ
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(authority.toString()));
+        return authorities;
 	}
 
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO 自動生成されたメソッド・スタブ
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO 自動生成されたメソッド・スタブ
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO 自動生成されたメソッド・スタブ
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO 自動生成されたメソッド・スタブ
+		return true;
+	}
 
 
 }

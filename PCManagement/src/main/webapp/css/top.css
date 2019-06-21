@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+html{
+	text-align:center;
+	margin : 0;
+	padding: 0;
+	background-color:#eeeeee;
+}
+.hero.is-info.is-bold{
+
+}
+.title {
+
+
+}
+.menu_bar_div{
+	position: absolute;
+    right: 30px;
+    top: 13px;
+    width: auto;
+    height: auto;
+	color: #888888;
+	display: block;
+	overflow: hidden;
+}
+
+.menu_icon{
+	border-top: 10px solid #FFF;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+	content: '';
+	display: inline-block;
+	height: 0;
+	width: 0;
+	vertical-align: middle;
+	-webkit-transition: color 0.1s linear;
+	        transition: color 0.1s linear;
+}
+
+
+.menu_active_a{
+	font-size:25px;
+	color:#FFF;
+}
+
+.menu_list_div{
+	border-top: 0;
+	border-radius: 0 0 4px 4px;
+	box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+	display: none;
+	margin: 0;
+	opacity: 0;
+	background-color:#888888;
+	width: 165px;
+	visibility: hidden;
+	-webkit-transiton: opacity 0.2s;
+	       transition: opacity 0.2s;
+}
+.menu_active{
+	width: 180px;
+
+}
+.menu_active:hover .menu_list_div{
+	display: block;
+	opacity: 1;
+	visibility: visible;
+}
+
+.menu_a{
+	color:#FFF;
+	font-size:20px;
+}
+
+.temporary_message{
+	height : 75px;
+	margin:20px auto;
+
+}
+.message_p{
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info_and_criteria{
+	display:flex;
+	width:auto;
+	margin:auto;
+}
+.info{
+	width: 550px;
+    height: 240px;
+    margin-left:auto;
+    margin-right:25px;
+}
+.login_user{
+	text-align:left;
+	font-size:25px;
+	padding-bottom:10px;
+}
+.message{
+	border : 2px solid #CFCFCF;
+	height : 100px;
+	background-color:#FFF;
+	 overflow-y: scroll;
+
+}
+.message_list{
+	text-align:left;
+	list-style:disc;
+	padding-left: 30px;
+}
+.pc_enter_a{
+	font-size:25px;
+}
+
+.criteria{
+	width: 550px;
+    height: 240px;
+    background-color:#FFF;
+    margin-right:auto;
+
+}
+.criteria_title{
+	text-align:left;
+	background-color:#eeeeee;
+}
+.criteria_table{
+	border : 2px solid #000;
+	background-color:#FFF;
+}
+
+.pclist_div{
+	padding-top:15px;
+	width:auto;
+}
+.pclist_table{
+
+    /* table-layout: fixed;*/
+
+	border-collapse: unset;
+	border-spacing: 3px;
+	background-color:#FFF;
+	border-color:#FFF;
+	width:100%;
+
+}
+.pclist_table_first_tr{
+	background-color:#A4C6FF;
+}
+.pclist_table_data_tr{
+	background-color:#D9E5FF;
+}
+tr:nth-child(even) {
+  background: 	#D7EEFF;
+ }
+
+ .pc_info_a{
+ 	font-size:20px;
+ }
+
+ .note{
+ 	font-size:15px;
+ 	height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+ }
+
+

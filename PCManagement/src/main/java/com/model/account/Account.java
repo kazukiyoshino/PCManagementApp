@@ -4,72 +4,105 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.validation.constraints.NotBlank;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class Account implements UserDetails{
-	public enum Authority {ROLE_USER, ROLE_ADMIN};
 
-	@NotBlank
-	private String username;
-	@NotBlank
-	private String password;
+public class Account implements UserDetails {
+	private AccountID accountID;
+	private AccountPassword accountPassword;
+	private AccountAuthority accountAuthority;
 
-	private Authority authority;
+
+	public Account() {
+
+	}
+
+	public Account (AccountID accountID,AccountPassword accountPassword,AccountAuthority accountAuthority) {
+		this.accountID = accountID;
+		this.accountPassword = accountPassword;
+		this.accountAuthority = accountAuthority;
+	}
+
+	public AccountID getAccountID() {
+		return accountID;
+	}
+
+	public void setAccountID(AccountID accountID) {
+		this.accountID = accountID;
+	}
+
+	public AccountPassword getAccountPassword() {
+		return accountPassword;
+	}
+
+	public void setAccountPassword(AccountPassword accountPassword) {
+		this.accountPassword = accountPassword;
+	}
+
+
+
+	public AccountAuthority getAccountAuthority() {
+		return accountAuthority;
+	}
+
+	public void setAccountAuthority(AccountAuthority accountAuthority) {
+		this.accountAuthority = accountAuthority;
+	}
+
+	@Override
+	public String toString() {
+		return "Account [accountID=" + accountID + ", accountPassword=" + accountPassword + "]";
+	}
 
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO 自動生成されたメソッド・スタブ
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(authority.toString()));
+		authorities.add(new SimpleGrantedAuthority(accountAuthority.toString()));
         return authorities;
 	}
 
-
+	@Override
 	public String getUsername() {
-		return username;
+		// TODO 自動生成されたメソッド・スタブ
+		return accountID.getId();
 	}
 
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-
+	@Override
 	public String getPassword() {
-		return password;
+		// TODO 自動生成されたメソッド・スタブ
+		return accountPassword.getPassword();
 	}
-
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO 自動生成されたメソッド・スタブ
 		return true;
 	}
+
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO 自動生成されたメソッド・スタブ
 		return true;
 	}
+
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO 自動生成されたメソッド・スタブ
 		return true;
 	}
+
 	@Override
 	public boolean isEnabled() {
 		// TODO 自動生成されたメソッド・スタブ
 		return true;
 	}
+
+
+
 
 
 }

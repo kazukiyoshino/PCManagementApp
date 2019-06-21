@@ -13,6 +13,11 @@ public class AccountDataAccess implements AccountRepository {
 
 	public Account findByUsername(String username) {
 		return accountMapper.findByUsername(username);
+//		Account account =new Account(accountMapper.findByUsername(username),
+//										accountMapper.findPasswordByUsername(username),
+//										accountMapper.findAuthorityByUsername(username));
+//
+//		return account;
 	}
 
 }

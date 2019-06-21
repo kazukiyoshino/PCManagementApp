@@ -5,7 +5,8 @@ public class PCCreateAt {
 	private PCCreateAtDate pcCreateAtDate;
 
 	public PCCreateAt() {
-
+		this.pcCreateAtYear = new PCCreateAtYear();
+		this.pcCreateAtDate = new PCCreateAtDate();
 	}
 	public PCCreateAt(PCCreateAtYear pcCreateAtYear,PCCreateAtDate pcCreateAtDate) {
 		this.pcCreateAtYear = pcCreateAtYear;

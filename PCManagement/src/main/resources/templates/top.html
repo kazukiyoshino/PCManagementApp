@@ -1,23 +1,161 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8" />
 <title>メニュー画面</title>
+<link rel="stylesheet" href="/css/bulma-0.7.5/css/bulma.css">
+<link rel="stylesheet" href="/css/fontawesome-free-5.9.0-web/css/all.css">
+<link rel="stylesheet" href="/css/top.css">
+<!-- <script type ="text/javascript" src="/js/top.js"></script>-->
+
 </head>
 <body>
-<header>
-<h1>PC一覧画面</h1>
+<header class = "hero is-info is-bold">
+	<h1 class = "title">PC一覧画面(トップページ)</h1>
+
+	<div class="menu_bar_div">
+		<div class= "menu_active">
+			<a class="menu_active_a">
+	            メニュー <span class = "menu_icon"></span>
+	        </a>
+	        
+            <div class= "menu_list_div">
+		        <ul>
+					<li><a  class ="menu_a" href = "/login" >ユーザー一覧</a><br></li>
+					<li><a  class ="menu_a" href = "/login" >パスワード変更</a><br></li>
+					<li><a  class ="menu_a" href = "/login" >ヘルプ</a><br></li>
+					<li>
+						<div th:fragment="logout" sec:authorize="isAuthenticated()" class = "logout">
+				    		<form action="#" th:action="@{/logout}" method="post">
+				        		<a  class ="menu_a" href = "/login" onclick="javascript:logout.submit()">ログアウト</a>
+				    		</form>
+				    	</div>
+			    	</li>
+			    </ul>
+	    	</div>
+
+      	</div>
+
+	</div>
+
 </header>
 
-<div th:fragment="logout" sec:authorize="isAuthenticated()">
-    <p>ログインユーザー:
-    <span sec:authentication="username"></span>さん</p>
-    <p>権限:
-    <span sec:authentication="principal.authorities"></span></p>
-    <form action="#" th:action="@{/logout}" method="post">
-        <input type="submit" value="ログアウト" />
-    </form>
-</div>
+
+	<div class = "temporary_message">
+		<p class = "message_p">メッセージ(登録完了等)</p>
+	</div>
+
+
+	<div class = "info_and_criteria">
+		<div class = "info">
+			<div class = "login_user">
+	    		<p>ログインユーザー:
+	    		<span sec:authentication="name"></span></p>
+	    	</div>
+
+	    	<div class = "message">
+	    		<ul class= "message_list">
+	    		<li>通知メッセージ(未実装)</li>
+	    		<li>リストタグで表示予定</li>
+	    		<li></li>
+	    		<li></li>
+	    		<li></li>
+	    		<li></li>
+	    		<li></li>
+	    		</ul>
+	    	</div>
+
+	        <a href= "/pc_enter" sec:authorize="hasRole('ROLE_ADMIN')" class ="pc_enter_a" >PC新規登録</a>
+	    </div>
+
+		<div class = "criteria">
+			<p class="criteria_title">検索条件(未実装)</p>
+			<table class = "criteria_table">
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class = "pclist_div">
+
+		<table class = pclist_table border="1">
+			<thead>
+	        	<tr class = "pclist_table_first_tr">
+	        		<th>
+	        			<p>id</p>
+	        			<p>name</p>
+	        			<p>pc区分</p>
+	        		</th>
+
+	        		<th>使用区分</th>
+	        		<th>使用者情報</th>
+	        		<th>製造年月日</th>
+	        		<th>OS</th>
+	        		<th>CPU</th>
+	        		<th>メモリ</th>
+	        		<th>ストレージ</th>
+	        		<th>office</th>
+	        		<th>詳細</th>
+	        	</tr>
+        	</thead>
+			<th:block th:each="list : ${pcList}">
+	        	<tr class="pclist_table_data_tr" >
+	            	<td rowspan="2">
+	            		<p th:text="${list.pcId.id}">
+	            		<p th:text="${list.pcName.name}"></p>
+	            		<p th:text="${list.pcCategory}"></p>
+	            	</td>
+	            	<td rowspan="2" th:text="${list.useCategory.useCategoryName.name}">
+	            	</td>
+	          		<td rowspan="2"  th:text="${list.useCategory.useCategoryName.name eq '未使用'}? '-':'未実装'">
+	          		</td>
+
+	            	<td th:text="${list.pcCreateAt.pcCreateAtDate.createAtDate eq null}?
+	            	${list.pcCreateAt.pcCreateAtYear.createAtYear} : ${#dates.format(list.pcCreateAt.pcCreateAtDate.createAtDate,'yyyy/MM/dd')}">
+	            	</td>
+
+	            	<td th:text="${list.os.osCategory}"></td>
+
+	            	<td>
+	            		<span th:text="${list.cpu.cpuCategory}"></span>
+	            		<span th:text="${list.cpu.cpuName.name}"></span>
+	            	</td>
+
+	            	<td>
+	            		<span th:text="${list.memory.memoryCapacity.capacity}"></span>
+	            		<span th:text="${list.memory.byteUnit}"></span>
+	            	</td>
+
+	            	<td>
+	            		<span th:text="${list.storage.storageCategory}"></span>
+	            		<span th:text="${list.storage.storageCapacity.capacity}"></span>
+	            		<span th:text="${list.storage.byteUnit}"></span>
+	            	</td>
+
+	            	<td th:text="${list.office.officeExist.exist}? 'あり':'なし'"></td>
+
+
+	            	<td rowspan="2"><a href="/pcinfo" class = "pc_info_a">詳細</a></td>
+	        	</tr>
+	        	<tr>
+	        		<td colspan="6"><p class="note">備考欄：<span th:text="${list.pcNote.note}"></span></p></td>
+	        	</tr>
+        	</th:block>
+
+      	</table>
+	</div>
+
 </body>
 </html>

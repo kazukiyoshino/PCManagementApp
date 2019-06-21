@@ -4,13 +4,46 @@
 
 <mapper namespace="com.dataaccess.AccountMapper">
 
+
 	<select id = "findByUsername" parameterType = "String" resultMap = "AccountResultMap">
 		select * from account.account where account_id = #{username}
 	</select>
 
 	<resultMap id="AccountResultMap" type="com.model.account.Account">
-        <id property="username" column="account_id" />
-        <result property="password" column="account_password" />
+        <id property="accountID.id" column="account_id" />
+        <result property="accountPassword.password" column="account_password" />
+        <result property="accountAuthority" column="role_name" />
+    </resultMap>
+
+
+	<!--
+	<select id = "findByUsername" parameterType = "String" resultMap = "AccountResultMap1">
+		select account_id from account.account where account_id = #{username}
+	</select>
+
+	<resultMap id="AccountResultMap1" type="com.model.account.AccountID">
+        <id property="id" column="account_id" />
+
         <result property="authority" column="role_name" />
     </resultMap>
+
+
+
+	<select id = "findPasswordByUsername" parameterType = "String" resultMap = "AccountResultMap2">
+		select account_password from account.account where account_id = #{username}
+	</select>
+
+	<resultMap id="AccountResultMap2" type="com.model.account.AccountPassword">
+        <result property="password" column="account_password" />
+    </resultMap>
+
+
+
+    <select id = "findAuthorityByUsername" parameterType = "String" resultMap = "AccountResultMap3">
+		select role_name from account.account where account_id = #{username}
+	</select>
+
+	<resultMap id="AccountResultMap3" type="com.model.account.AccountAuthority">
+        <result property="authority" column="role_name" />
+    </resultMap>-->
 </mapper>

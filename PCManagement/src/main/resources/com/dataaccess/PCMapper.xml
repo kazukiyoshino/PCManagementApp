@@ -4,13 +4,81 @@
 
 <mapper namespace="com.dataaccess.PCMapper">
 
-	<select id = "PCdata" parameterType = "String" resultMap = "PCResultMap">
-		select * from account.account where account_id = #{username}
+
+
+
+
+	<select id = "findPCAll" parameterType = "Integer" resultMap = "PCResultMap">
+
+	<!--使用情報省略,-->
+	<!--それぞれの並び順省略,-->
+	<!--オフィス名省略-->
+
+		select
+			pc.pc.pc_id,
+			pc.pc.pc_name,
+
+			pc.pc.pc_create_at_year,
+			pc.pc.pc_create_at,
+			pc.use_category.use_category_name,
+			pc.pc_category.pc_category_name,
+			pc.os_category.os_category_name,
+			pc.pc.os_name,
+			pc.cpu_category.cpu_category_name,
+			pc.pc.cpu_name,
+			pc.pc.memory_capacity,
+			unit.byte_unit.unit_name as memory_unit_name,
+			pc.office.office_exist,
+
+			join_storage.storage_capacity,
+			join_storage.storage_category_name,
+			join_storage.unit_name as storage_unit_name,
+
+
+			pc.note
+
+		from
+			((((((pc.pc
+
+			inner join pc.use_category on pc.pc.use_category_id = pc.use_category.use_category_id)
+			inner join pc.pc_category on pc.pc.pc_category_id = pc.pc_category.pc_category_id)
+			inner join pc.os_category on pc.pc.os_category_id = pc.os_category.os_category_id)
+			inner join pc.cpu_category on pc.pc.cpu_category_id = pc.cpu_category.cpu_category_id)
+			inner join pc.office on pc.pc.pc_id = pc.office.pc_id)
+			inner join unit.byte_unit on pc.pc.memory_capacity_unit_id = unit.byte_unit.unit_id)
+
+			inner join (
+				select *
+				from (pc.storage inner join pc.storage_category on pc.storage.storage_category_id = pc.storage_category.storage_category_id )
+				inner join unit.byte_unit on pc.storage.byte_unit_id = unit.byte_unit.unit_id)
+
+				as join_storage on pc.pc.pc_id = join_storage.pc_id
+
+			order by
+				pc.pc.pc_id;
+
+
 	</select>
 
-	<resultMap id="AccountResultMap" type="com.model.account.Account">
-        <id property="username" column="account_id" />
-        <result property="password" column="account_password" />
-        <result property="authority" column="role_name" />
+	<resultMap id="PCResultMap" type="com.model.pc.PC">
+        <id property="pcId.id" column="pc_id" />
+        <result property="pcName.name" column="pc_name" />
+        <result property="pcCreateAt.pcCreateAtYear.createAtYear" column="pc_create_at_year"/>
+        <result property="pcCreateAt.pcCreateAtDate.createAtDate" column="pc_create_at"/>
+        <result property="useCategory.useCategoryName.name" column="use_category_name"/>
+        <result property="pcCategory" column="pc_category_name"/>
+        <result property="os.osCategory" column="os_category_name"/>
+        <result property="os.osName.name" column="os_name"/>
+        <result property="cpu.cpuCategory" column="cpu_category_name"/>
+        <result property="cpu.cpuName.name" column="cpu_name"/>
+        <result property="memory.memoryCapacity.capacity" column="memory_capacity"/>
+        <result property="memory.byteUnit" column="memory_unit_name"/>
+        <result property="office.officeExist.exist" column="office_exist"/>
+        <result property="storage.storageCapacity.capacity" column="storage_capacity"/>
+        <result property="storage.storageCategory" column="storage_category_name"/>
+        <result property="storage.byteUnit" column="storage_unit_name"/>
+        <result property="pcNote.note" column="note"/>
     </resultMap>
 </mapper>
+
+

@@ -47,9 +47,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .permitAll();
     }
-    @Autowired
+    @SuppressWarnings("deprecation")
+	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //ＤＢによる独自認証
+        //ＤBでの独自認証
         auth.userDetailsService(userDetailsService)
         .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }

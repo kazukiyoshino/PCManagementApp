@@ -15,10 +15,7 @@ public class LoginController {
 		return "login";
 	}
 
-	@RequestMapping("/top")
-	public String top() {
-	return "/top";
-	}
+	
 
 
 }

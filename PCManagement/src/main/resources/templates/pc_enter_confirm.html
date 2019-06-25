@@ -1,10 +1,80 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	<head>
+		<meta charset="UTF-8">
+		<title>PC新規登録</title>
+		<link rel="stylesheet" href="/css/bulma-0.7.5/css/bulma.css">
+		<link rel="stylesheet" href="/css/pc_enter.css">
+		<link rel="stylesheet" href="/css/pc_enter_confirm.css">
+	</head>
+	<body>
 
-</body>
+		<header class = "hero is-info is-bold">
+			<h1 class = "title">PC一覧画面(トップページ)</h1>
+		</header>
+		<form th:action="@{/pc_enter_confirm}" method="post">
+			<div th:object="${enterPC}" class= "">
+				<table class = pc_enter_table border="1">
+					<tr>
+						<td>モデル名</td>
+						<td><p th:text="*{pcName.name}"></p></td>
+						<td>PC区分</td>
+						<td><p th:text="*{pcCategory}"></p></td>
+					</tr>
+					<tr>
+						<td>製造年月日</td>
+						<td>
+							<p th:text="*{pcCreateAt.pcCreateAtYear.createAtYear}"></p>
+						</td>
+						<td>OS</td>
+						<td>
+							<span th:text="*{os.osCategory}"></span>
+							<span th:text="*{os.osName.name}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>CPU</td>
+						<td>
+							<span th:text="*{cpu.cpuCategory}"></span>
+							<!--<span th:text="*{cpu.cpuName.name}"></span>-->
+						</td>
+						<td>メモリ</td>
+						<td>
+							<p th:text="*{memory.memoryCapacity.capacity}"></p>
+							<span th:text="*{memory.byteUnit}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>ストレージ</td>
+						<td>
+							<p th:text="*{pcName.name}">
+							<span th:text="*{pcName.name}"></span>
+							<span th:text="*{pcName.name}"></span>
+							</p></td>
+						<td>office</td>
+						<td>
+							<p th:text="*{pcName.name}">
+							<span th:text="*{pcName.name}"></span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>備考</td>
+						<td><p th:text="*{pcNote.note}"></p><td>
+					</tr>
+
+				</table>
+			</div>
+
+			<div class = "columns" >
+				<div class = "column">
+					<input type="submit" name = "revise" value="修正" class ="button is-primary is-large is-fullwidth"/>
+				</div>
+				<div class = "column">
+					<p><input type="submit" name = "confirm" value="登録" class = "button is-primary is-large is-fullwidth"  /></p>
+				</div>
+			</div>
+		</form>
+	</body>
 </html>

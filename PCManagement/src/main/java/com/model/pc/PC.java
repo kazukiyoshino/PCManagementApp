@@ -9,10 +9,15 @@ import com.model.pc.storage.Storage;
 import com.model.pc.usecategory.UseCategory;
 
 public class PC {
+
 	private PCId pcId;
+
 	private PCName pcName;
+
 	private PCNote pcNote;
+
 	private PCCategory pcCategory;
+
 	private PCCreateAt pcCreateAt;
 	private Office office;
 	private Memory memory;
@@ -22,6 +27,16 @@ public class PC {
 	private CPU cpu;
 
 	public PC() {
+		pcName = new PCName();
+		pcNote = new PCNote();
+		pcCreateAt = new PCCreateAt();
+		office = new Office();
+		memory = new Memory();
+		storage = new Storage();
+		useCategory = new UseCategory();
+		os = new OS();
+		cpu = new CPU();
+
 
 	}
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dataaccess.PCEnteringMapper">
+
+	<insert id = "insertPC" parameterType="com.model.pc.PC">
+		insert into pc.pc(
+			pc_name,
+			pc_category_id,
+			use_category_id,
+			pc_create_at_year,
+			pc_create_at,
+			os_category_id,
+			os_name,
+			cpu_category_id,
+			cpu_}name
+			memory_capacity,
+			memory_capacity_unit_id,
+			note,
+			)
+		values(
+			#{},
+			#{},
+			#{},
+			#{},
+			#{},
+			#{},
+			#{},
+			#{},
+			#{},
+			#{},
+			#{},
+			#{},
+			)
+	</insert>
+
+	<insert id = "insertStorage" parameterType = "com.model.pc.PC">
+		insert into pc.storage(pc,)
+		values()
+	</insert>
+
+	<insert id = "insertOffice" parameterType = "com.model.pc.PC">
+		insert into pc.storage()
+		values()
+	</insert>
+
+</mapper>

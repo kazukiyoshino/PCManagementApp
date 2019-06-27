@@ -1,11 +1,14 @@
 package com.model.pc;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class PCName {
-	//@NotBlank(message = "PCモデル名を入力してください")
-	@Size(max = 100,message="100文字以下で入力してください")
+
+	@NotBlank
+	@Size (max = 100)
 	private String name;
+
 
 	public PCName() {
 
@@ -25,7 +28,6 @@ public class PCName {
 	public String toString() {
 		return "PCName [name=" + name + "]";
 	}
-
 
 
 

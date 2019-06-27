@@ -1,8 +1,11 @@
 package com.model.pc.storage;
 
+import javax.validation.Valid;
+
 import com.model.unit.ByteUnit;
 
 public class Storage {
+	@Valid
 	private StorageCapacity storageCapacity;
 	private StorageCategory storageCategory;
 	private ByteUnit byteUnit;

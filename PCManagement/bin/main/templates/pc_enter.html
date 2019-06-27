@@ -6,97 +6,149 @@
 		<title>PC新規登録</title>
 		<link rel="stylesheet" href="/css/bulma-0.7.5/css/bulma.css">
 		<link rel="stylesheet" href="/css/pc_enter.css">
+		<script src="/js/jquery-3.4.1.min.js "></script>
+		<script src="/js/pc_enter.js "></script>
 	</head>
 	<body>
 
 		<header class = "hero is-info is-bold">
-			<h1 class = "title">PC一覧画面(トップページ)</h1>
+			<h1 class = "title">PC新規登録画面</h1>
 		</header>
-		<div class="annotation">
-			<p>アノテーションテスト</p>
+		<div class="annotation-descripton">
+			<span>※は必須項目です</span>
+			<span class= "annotation-description-blue">＊は登録する場合、どちらも入力してください</span>
 		</div>
 
 		<form th:action="@{/pc_enter}" method="post" th:object="${enterPC}">
 			<table class = pc_enter_table border="1">
 				<tr class ="pc_enter_table_tr">
-					<td>モデル名</td>
 					<td>
-						<input type="text" class = "model_text" name="pcName.name" th:value="*{pcName.name}">
+						モデル名
+						<p class = "annotation">※</p>
 					</td>
-					<td>PC区分</td>
 					<td>
-						<select  name ="pcCategory" >
+						<input type="text" class="input is-large is-model" name="pcName.name" th:value="*{pcName.name}">
+
+						<p class ="error" th:if="${#fields.detailedErrors('pcName.name')}" th:errors="*{pcName.name}"></p>
+					</td>
+					<td>PC区分
+						<p class = "annotation">※</p>
+					</td>
+					<td>
+						<select  name ="pcCategory" class="select is-medium">
 							<option th:each = "options : ${pcCategoryOptions}"
-							th:value = "${options}" th:text="${options}"></option>
+							th:value = "${options.key}" th:text="${options.value}"></option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>製造年月日</td>
+					 <td class = createAt_td>
+						<th:block th:object="${enteredDate}">
+
+							 <div class = createAtAll-div>
+								<div class = "createAt-div">
+									<input type="text" class="input is-medium is-create" name="year" th:value="*{year}">年
+									<p class = "annotation">※</p>
+								</div>
+								<div class = "createAt-div">
+									<input type="text" class="input is-medium is-create" name="month" th:value="*{month}">月
+									<p class = "annotation is-blue">＊</p>
+								</div>
+								<div class = "createAt-div">
+									<input type="text" class="input is-medium is-create" name="day" th:value="*{day}">日
+									<p class = "annotation is-blue">＊</p>
+								</div>
+							 </div>
+
+								<p class ="error" th:if="${#fields.detailedErrors('year')}" th:errors="*{year}"></p>
+								<p class ="error" th:if="${#fields.detailedErrors('month')}" th:errors="*{month}"></p>
+								<p class ="error" th:if="${#fields.detailedErrors('day')}" th:errors="*{day}"></p>
+								<p class ="error" th:if="${#fields.detailedErrors('setMonthAndDay')}" th:errors="*{setMonthAndDay}"></p>
+
+						</th:block>
+					 </td>
+
 					<td>
-						<select name="createAt">
-							<option value="サンプル1">サンプル</option>
-							<option value="サンプル2">三</option>
-							<option value="サンプル3">プル</option>
-						</select>
-						<select>
-
-						</select>
-						<select>
-
-						</select>
+						OS
+						<p class = "annotation">※</p>
 					</td>
-
-					<td>OS</td>
-					<td>
-						<select name="os.osCategory">
-							<option th:each = "options : ${osCategoryOptions}"
-							th:value = "${options}" th:text="${options}"></option>
-						</select>
-						<input type="text" class = "OS_text" th:field="*{os.osName.name}">
+					<td class = "os_td">
+							<select name="os.osCategory" class="select is-large">
+								<option th:each = "options : ${osCategoryOptions}"
+								th:value = "${options.key}" th:text="${options.value}"></option>
+							</select>
+							<input type="text" th:field="*{os.osName.name}" class="input is-large is-os">
+						<p class ="error" th:if="${#fields.detailedErrors('os.osName.name')}" th:errors="*{os.osName.name}"></p>
 					</td>
 				</tr>
 				<tr>
-					<td>CPU</td>
 					<td>
-						<select name="cpu.cpuCategory">
+						CPU
+						<p class = "annotation">※</p>
+					</td>
+					<td>
+						<select name="cpu.cpuCategory" class="select is-large">
 							<option th:each = "options : ${cpuCategoryOptions}"
-							th:value = "${options}" th:text="${options}"></option>
+							th:value = "${options.key}" th:text="${options.value}"></option>
 						</select>
+						<input type="text" class = "input is-large is-cpu" th:field="*{cpu.cpuName.name}">
+
+						<p class ="error" th:if="${#fields.detailedErrors('cpu.cpuName.name')}" th:errors="*{cpu.cpuName.name}"></p>
 					</td>
-					<td>メモリ</td>
 					<td>
-						<input type="text" class = "memory_capacity" th:field="*{memory.memoryCapacity.capacity}">
-						<select name="memory.byteUnit">
+						メモリ
+						<p class = "annotation">※</p>
+					</td>
+					<td class="memory-td">
+						<input type="text" th:field="*{memory.memoryCapacity.capacity}" class="input is-large is-memory">
+						<select name="memory.byteUnit" class="select is-large">
 							<option th:each = "options : ${byteUnitOptions}"
-							th:value = "${options}" th:text="${options}"></option>
+							th:value = "${options.key}" th:text="${options.value}"></option>
 						</select>
+
+						<p class ="error" th:if="${#fields.detailedErrors('memory.memoryCapacity.capacity')}" th:errors="*{memory.memoryCapacity.capacity}"></p>
 					</td>
 				</tr>
 				<tr>
-					<td>ストレージ</td>
 					<td>
-						<select >
-							<option th:each = "options : ${storageCategoryOptions}"
-							th:value = "${options}" th:text="${options}"></option>
-						</select>
-						<input type="text" class = "storage" th:field="*{storage.storageCapacity.capacity}">
-						<select >
-							<option th:each = "options : ${byteUnitOptions}"
-							th:value = "${options}" th:text="${options}"></option>
-						</select>
+						ストレージ
+						<p class = "annotation">※</p>
 					</td>
-					<td>office</td>
 					<td>
-						<p><input type="radio" class = "office_exist" name="office.officeExist.exist" th:value=true>あり</p>
-						<p><input type="radio" class = "office_exist" name="office.officeExist.exist" th:value=false checked="checked">なし</p>
-						<input type="text" class = "office_text" th:field="*{office.officeName.name}">
+						<select name="storage.storageCategory" class = "select is-large">
+							<option th:each = "options : ${storageCategoryOptions}"
+							th:value = "${options.key}" th:text="${options.value}"></option>
+						</select>
+						<input type="text" class = "input is-large is-storage" th:field="*{storage.storageCapacity.capacity}" >
+						<select name="storage.byteUnit" class= "select is-large">
+							<option th:each = "options : ${byteUnitOptions}"
+							th:value = "${options.key}" th:text="${options.value}"></option>
+						</select>
+
+						<p class ="error" th:if="${#fields.detailedErrors('storage.storageCapacity.capacity')}" th:errors="*{storage.storageCapacity.capacity}"></p>
+					</td>
+					<td>
+						office
+						<p class = "annotation">※</p>
+					</td>
+					<td class = "office_td">
+						<div class = "radio-div">
+							<p class="radio-p"><input type="radio" class = "office_exist" name="office.officeExist.exist" th:value=true>あり</p>
+							<p class="radio-p"><input type="radio" class = "office_exist" name="office.officeExist.exist" th:value=false checked="checked">なし</p>
+						</div>
+						<div class = "office_input_div">
+							<input disabled type="text" id="officeInput"  th:field="*{office.officeName.name}" class = "input is-large is-office">
+						</div>
+
+						<p class ="error"  th:if="${#fields.detailedErrors('office.officeName.name')}" th:errors="*{office.officeName.name}"></p>
 					</td>
 				</tr>
 				<tr>
 					<td>備考</td>
 					<td colspan="3">
 						<textarea class = "note_text" th:field="*{pcNote.note}"></textarea>
+						<p class ="error" th:if="${#fields.detailedErrors('pcNote.note')}" th:errors="*{pcNote.note}"></p>
 					</td>
 				</tr>
 			</table>

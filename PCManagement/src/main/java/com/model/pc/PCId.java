@@ -1,6 +1,7 @@
 package com.model.pc;
 
 public class PCId {
+
 	private Integer id;
 
 	public PCId() {

@@ -1,15 +1,22 @@
 package com.dataaccess;
 
-import com.model.pc.InsertPCRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.model.pc.EnteringPCRepository;
 import com.model.pc.PC;
 
-public class PCEnteringDataAccess implements  InsertPCRepository{
+@Repository
+public class PCEnteringDataAccess implements  EnteringPCRepository{
 
-//	@Autowired
-//	PCEnteringMapper pcEnteringMapper;
+	@Autowired
+	PCEnteringMapper pcEnteringMapper;
 
-	public void insertPC(PC pc) {
-//		pcEnteringMapper.enteringPC(pc);
+	public void enteringPC(PC pc) {
+
+		pcEnteringMapper.insertPC(pc);
+		pcEnteringMapper.insertStorage(pc);
+		pcEnteringMapper.insertOffice(pc);
 
 	}
 

@@ -4,45 +4,68 @@
 
 <mapper namespace="com.dataaccess.PCEnteringMapper">
 
-	<insert id = "insertPC" parameterType="com.model.pc.PC">
+	<insert id = "insertPC" parameterType="com.model.pc.PC" useGeneratedKeys="true" keyProperty="pcId.id">
 		insert into pc.pc(
 			pc_name,
 			pc_category_id,
-			use_category_id,
 			pc_create_at_year,
 			pc_create_at,
 			os_category_id,
 			os_name,
 			cpu_category_id,
-			cpu_}name
+			cpu_name,
 			memory_capacity,
 			memory_capacity_unit_id,
-			note,
+			note
 			)
 		values(
-			#{},
-			#{},
-			#{},
-			#{},
-			#{},
-			#{},
-			#{},
-			#{},
-			#{},
-			#{},
-			#{},
-			#{},
+			#{pcName.name},
+			#{pcCategory},
+			#{pcCreateAt.pcCreateAtYear.createAtYear},
+			#{pcCreateAt.pcCreateAtDate.createAtDate},
+			#{os.osCategory},
+			#{os.osName.name},
+			#{cpu.cpuCategory},
+			#{cpu.cpuName.name},
+			#{memory.memoryCapacity.capacity},
+			#{memory.byteUnit},
+			#{pcNote.note}
 			)
 	</insert>
 
 	<insert id = "insertStorage" parameterType = "com.model.pc.PC">
-		insert into pc.storage(pc,)
-		values()
+		insert into pc.storage(
+			pc_id,
+			storage_category_id,
+			storage_capacity,
+			byte_unit_id
+		)
+		values(
+			#{pcId.id},
+			#{storage.storageCategory},
+			#{storage.storageCapacity.capacity},
+			#{storage.byteUnit}
+		)
 	</insert>
 
+
 	<insert id = "insertOffice" parameterType = "com.model.pc.PC">
-		insert into pc.storage()
-		values()
-	</insert>
+		insert into pc.office(
+			pc_id,
+			office_exist
+			<if test = "office.officeExist.exist">
+				,
+				office_name
+			</if>
+		)
+		values(
+			#{pcId.id},
+			#{office.officeExist.exist}
+			<if test="office.officeExist.exist">
+				,
+				#{office.officeName.name}
+			</if>
+		)
+			</insert>
 
 </mapper>

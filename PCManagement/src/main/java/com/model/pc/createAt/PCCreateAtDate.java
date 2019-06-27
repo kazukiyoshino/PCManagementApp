@@ -1,8 +1,9 @@
 package com.model.pc.createAt;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class PCCreateAtDate {
+
 	private Date createAtDate;
 
 	public PCCreateAtDate() {

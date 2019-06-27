@@ -1,6 +1,7 @@
 package com.model.pc.usecategory;
 
 public class UseCategoryName {
+
 	private String name;
 
 	public UseCategoryName() {

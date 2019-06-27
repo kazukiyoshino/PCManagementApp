@@ -1,6 +1,11 @@
 package com.model.pc.cpu;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class CPUName {
+	@NotBlank
+	@Size(max=100)
 	private String name;
 
 	public CPUName() {
@@ -21,7 +26,5 @@ public class CPUName {
 	public String toString() {
 		return "CPUName [name=" + name + "]";
 	}
-
-
 
 }

@@ -6,6 +6,31 @@ html{
 	padding: 0;
 	background-color:#eeeeee;
 }
+.hero.is-info.is-bold{
+	height:80px;
+}
+
+
+.annotation{
+	font-size:20px;
+	text-align:center;
+	color:red;
+
+}
+.annotation-descripton{
+	text-align:left;
+	color:red;
+	margin-top:50px;
+}
+.annotation-description-blue{
+	color:blue;
+	margin-left:15px;
+}
+.is-blue{
+	color:blue;
+}
+
+
 
 .pc_enter_table{
 	border-collapse: unset;
@@ -16,7 +41,6 @@ html{
 	text-align:center;
 }
 .pc_enter_table_tr{
-	background-color:#D9E5FF;
 	text-align:center;
 
 }
@@ -27,14 +51,71 @@ tr{
 
 td{
 	text-align:center !important;
-	font-size : 30px ;
+	font-size : 25px ;
+	/*height:auto !important;*/
+	vertical-align: middle !important;
 
 
 }
 
-tr:nth-child(even) {
-  background-color: 	#D7EEFF;
+tr:nth-child(odd) {
+  background-color: #D7EEFF;
+
  }
+
+ tr:nth-child(even) {
+  background-color: #D9E5FF;
+
+ }
+
+ .is-model{
+ 	width: 80%  !important;
+ }
+
+
+ .is-office{
+	vertical-align: middle !important;
+	    margin-top: 20px;
+	    width: 90%;
+ }
+
+
+ .is-create{
+ 	width: 70%  !important;
+ 	vertical-align:middle;
+ }
+ .is-cpu{
+ 	width: 60%  !important;
+
+ }
+ .is-storage{
+ 	width: 20%  !important;
+ }
+
+.createAtAll-div{
+	display:flex;
+	width:100%;
+	margin-left:20%;
+}
+.createAt-div{
+	width:20%;
+}
+
+.memory-td{
+
+}
+
+.radio-div{
+	width:100px;
+	margin-top: 20px;
+}
+
+
+.radio-p{
+	font-size:20px;
+	width:80px;
+
+}
 
 .button_div{
 
@@ -44,5 +125,42 @@ tr:nth-child(even) {
 	height:100px;
 	min-height: 80%;
 	resize: vertical;
+	font-size: 20px
 
+}
+nth-of-type(odd){
+	width:auto;
+}
+
+.office_exist{
+	margin:0;
+
+}
+.error{
+	font-size:15px;
+	color:red;
+}
+.office_td{
+	display:flex;
+	height: inherit;
+}
+
+.createAt_td{
+
+	height:inherit;
+}
+.os_td{
+
+}
+.is-os{;
+	margin:0 15px;
+	width:65%;
+}
+
+.is-memory{
+	width:30%;
+}
+
+.columns{
+	margin:20px;
 }

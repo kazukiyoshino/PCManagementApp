@@ -1,6 +1,7 @@
 package com.model.pc.usecategory;
 
 public class UseCategory {
+
 	private UseCategoryId useCategoryId;
 	private UseCategoryName useCategoryName;
 

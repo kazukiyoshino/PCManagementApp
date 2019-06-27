@@ -1,5 +1,7 @@
 package com.model.pc;
 
+import javax.validation.Valid;
+
 import com.model.pc.cpu.CPU;
 import com.model.pc.createAt.PCCreateAt;
 import com.model.pc.memory.Memory;
@@ -8,22 +10,25 @@ import com.model.pc.software.office.Office;
 import com.model.pc.storage.Storage;
 import com.model.pc.usecategory.UseCategory;
 
+
 public class PC {
-
 	private PCId pcId;
-
+	@Valid
 	private PCName pcName;
-
+	@Valid
 	private PCNote pcNote;
-
 	private PCCategory pcCategory;
-
 	private PCCreateAt pcCreateAt;
+	@Valid
 	private Office office;
+	@Valid
 	private Memory memory;
+	@Valid
 	private Storage storage;
 	private UseCategory useCategory;
+	@Valid
 	private OS os;
+	@Valid
 	private CPU cpu;
 
 	public PC() {

@@ -5,14 +5,18 @@
 		<meta charset="UTF-8">
 		<title>PC新規登録</title>
 		<link rel="stylesheet" href="/css/bulma-0.7.5/css/bulma.css">
-		<link rel="stylesheet" href="/css/pc_enter.css">
 		<link rel="stylesheet" href="/css/pc_enter_confirm.css">
 	</head>
 	<body>
 
 		<header class = "hero is-info is-bold">
-			<h1 class = "title">PC一覧画面(トップページ)</h1>
+			<h1 class = "title">PC新規登録確認画面</h1>
 		</header>
+
+		<div class = "confirm">
+			<p> 以下の情報で登録します。</p>
+		</div>
+
 		<form th:action="@{/pc_enter_confirm}" method="post">
 			<div th:object="${enterPC}" class= "">
 				<table class = pc_enter_table border="1">
@@ -20,48 +24,49 @@
 						<td>モデル名</td>
 						<td><p th:text="*{pcName.name}"></p></td>
 						<td>PC区分</td>
-						<td><p th:text="*{pcCategory}"></p></td>
+						<td><p th:text="*{pcCategory.pcCategoryName}"></p></td>
 					</tr>
 					<tr>
 						<td>製造年月日</td>
-						<td>
-							<p th:text="*{pcCreateAt.pcCreateAtYear.createAtYear}"></p>
-						</td>
+					<!-- 	<td th:text="${enterPC.pcCreateAt.pcCreateAtDate.createAtDate eq null}?
+	            			${enterPC.pcCreateAt.pcCreateAtYear.createAtYear} : ${#dates.format(enterPC.pcCreateAt.pcCreateAtDate.createAtDate,'yyyy/MM/dd')}">
+						</td>-->
+						<td th:text="${enteredDate.month eq null}?
+	            			|${enteredDate.year}年| : |${enteredDate.year}年${enteredDate.month}月${enteredDate.day}日|">
 						<td>OS</td>
 						<td>
-							<span th:text="*{os.osCategory}"></span>
+							<span th:text="*{os.osCategory.osCategoryName}"></span>
 							<span th:text="*{os.osName.name}"></span>
 						</td>
 					</tr>
 					<tr>
 						<td>CPU</td>
 						<td>
-							<span th:text="*{cpu.cpuCategory}"></span>
+							<span th:text="*{cpu.cpuCategory.cpuCategoryName}"></span>
 							<!--<span th:text="*{cpu.cpuName.name}"></span>-->
 						</td>
 						<td>メモリ</td>
 						<td>
-							<p th:text="*{memory.memoryCapacity.capacity}"></p>
-							<span th:text="*{memory.byteUnit}"></span>
+							<span th:text="*{memory.memoryCapacity.capacity}"></span>
+							<span th:text="*{memory.byteUnit.byteUnitName}"></span>
 						</td>
 					</tr>
 					<tr>
 						<td>ストレージ</td>
 						<td>
-							<p th:text="*{pcName.name}">
-							<span th:text="*{pcName.name}"></span>
-							<span th:text="*{pcName.name}"></span>
-							</p></td>
+							<span th:text="*{storage.storageCategory.storageCategoryName}"></span>
+							<span th:text="*{storage.storageCapacity.capacity}"></span>
+							<span th:text="*{storage.byteUnit.byteUnitName}"></span>
+						</td>
 						<td>office</td>
 						<td>
-							<p th:text="*{pcName.name}">
-							<span th:text="*{pcName.name}"></span>
-							</p>
+							<span th:text="${enterPC.office.officeExist.exist eq true}? 'あり' : 'なし'"></span>
+							<span th:text="*{office.officeName.name}"></span>
 						</td>
 					</tr>
 					<tr>
 						<td>備考</td>
-						<td><p th:text="*{pcNote.note}"></p><td>
+						<td colspan="3"><p th:text="*{pcNote.note}"></p><td>
 					</tr>
 
 				</table>

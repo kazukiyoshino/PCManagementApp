@@ -1,6 +1,13 @@
 package com.model.pc.memory;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class MemoryCapacity {
+	@NotNull
+	@Min(1)
+	@Max(999)
 	private Integer capacity;
 
 	public MemoryCapacity() {

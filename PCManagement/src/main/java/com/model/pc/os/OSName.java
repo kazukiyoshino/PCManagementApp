@@ -1,6 +1,11 @@
 package com.model.pc.os;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class OSName {
+	@NotBlank
+	@Size(max = 50)
 	private String name;
 
 	public OSName() {

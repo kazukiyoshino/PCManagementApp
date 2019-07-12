@@ -1,6 +1,9 @@
 package com.model.pc.software.office;
 
+import javax.validation.Valid;
+
 public class Office {
+	@Valid
 	private OfficeName officeName;
 	private OfficeExist officeExist;
 

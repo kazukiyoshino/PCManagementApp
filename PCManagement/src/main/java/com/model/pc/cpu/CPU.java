@@ -1,7 +1,10 @@
 package com.model.pc.cpu;
 
+import javax.validation.Valid;
+
 public class CPU {
 	private CPUCategory cpuCategory;
+	@Valid
 	private CPUName cpuName;
 
 	public CPU() {

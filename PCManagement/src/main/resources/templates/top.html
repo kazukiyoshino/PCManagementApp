@@ -19,12 +19,12 @@
 			<a class="menu_active_a">
 	            メニュー <span class = "menu_icon"></span>
 	        </a>
-	        
+
             <div class= "menu_list_div">
 		        <ul>
-					<li><a  class ="menu_a" href = "/login" >ユーザー一覧</a><br></li>
-					<li><a  class ="menu_a" href = "/login" >パスワード変更</a><br></li>
-					<li><a  class ="menu_a" href = "/login" >ヘルプ</a><br></li>
+					<li><a  class ="menu_a" href = "" >ユーザー一覧</a><br></li>
+					<li><a  class ="menu_a" href = "" >パスワード変更</a><br></li>
+					<li><a  class ="menu_a" href = "" >ヘルプ</a><br></li>
 					<li>
 						<div th:fragment="logout" sec:authorize="isAuthenticated()" class = "logout">
 				    		<form action="#" th:action="@{/logout}" method="post">
@@ -43,7 +43,7 @@
 
 
 	<div class = "temporary_message">
-		<p class = "message_p">メッセージ(登録完了等)</p>
+		<p class = "message_p">登録完了メッセージ(未実装)</p>
 	</div>
 
 
@@ -115,7 +115,7 @@
 	            	<td rowspan="2">
 	            		<p th:text="${list.pcId.id}">
 	            		<p th:text="${list.pcName.name}"></p>
-	            		<p th:text="${list.pcCategory}"></p>
+	            		<p th:text="${list.pcCategory.pcCategoryName}"></p>
 	            	</td>
 	            	<td rowspan="2" th:text="${list.useCategory.useCategoryName.name}">
 	            	</td>
@@ -126,28 +126,28 @@
 	            	${list.pcCreateAt.pcCreateAtYear.createAtYear} : ${#dates.format(list.pcCreateAt.pcCreateAtDate.createAtDate,'yyyy/MM/dd')}">
 	            	</td>
 
-	            	<td th:text="${list.os.osCategory}"></td>
+	            	<td th:text="${list.os.osCategory.osCategoryName}"></td>
 
 	            	<td>
-	            		<span th:text="${list.cpu.cpuCategory}"></span>
+	            		<span th:text="${list.cpu.cpuCategory.cpuCategoryName}"></span>
 	            		<span th:text="${list.cpu.cpuName.name}"></span>
 	            	</td>
 
 	            	<td>
 	            		<span th:text="${list.memory.memoryCapacity.capacity}"></span>
-	            		<span th:text="${list.memory.byteUnit}"></span>
+	            		<span th:text="${list.memory.byteUnit.byteUnitName}"></span>
 	            	</td>
 
 	            	<td>
-	            		<span th:text="${list.storage.storageCategory}"></span>
+	            		<span th:text="${list.storage.storageCategory.storageCategoryName}"></span>
 	            		<span th:text="${list.storage.storageCapacity.capacity}"></span>
-	            		<span th:text="${list.storage.byteUnit}"></span>
+	            		<span th:text="${list.storage.byteUnit.byteUnitName}"></span>
 	            	</td>
 
 	            	<td th:text="${list.office.officeExist.exist}? 'あり':'なし'"></td>
 
 
-	            	<td rowspan="2"><a href="/pcinfo" class = "pc_info_a">詳細</a></td>
+	            	<td rowspan="2"><a href="" class = "pc_info_a">詳細</a></td>
 	        	</tr>
 	        	<tr>
 	        		<td colspan="6"><p class="note">備考欄：<span th:text="${list.pcNote.note}"></span></p></td>

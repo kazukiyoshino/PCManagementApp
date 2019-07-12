@@ -1,6 +1,9 @@
 package com.model.pc.software.office;
 
+import javax.validation.constraints.Size;
+
 public class OfficeName {
+	@Size(max = 100)
 	private String name;
 
 	public OfficeName() {

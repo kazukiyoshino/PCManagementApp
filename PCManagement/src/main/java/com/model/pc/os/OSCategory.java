@@ -1,18 +1,37 @@
 package com.model.pc.os;
 
+import java.util.EnumMap;
+
 public enum OSCategory {
-	Windows(1),
-	Mac(2),
-	Linux(3),
-	その他(4);
+	windows("Windows"),
+	mac("Mac"),
+	linux("Linux"),
+	other("その他");
 
-	Integer sortNumber;
+	String osCategoryName;
 
-	private OSCategory(Integer sortNumber) {
-		this.sortNumber = sortNumber;
+	private OSCategory(String osCategoryName) {
+		this.osCategoryName=osCategoryName;
 	}
 
-	public Integer getSortNumber() {
-		return sortNumber;
+	public static EnumMap<OSCategory, String> options;
+
+	static {
+		options = new EnumMap<OSCategory, String>(OSCategory.class);
+		for(OSCategory category : OSCategory.values()) {
+			options.put(category,category.osCategoryName);
+		}
+
 	}
+
+	public String getOsCategoryName() {
+		return osCategoryName;
+	}
+
+	public static EnumMap<OSCategory, String> getOptions() {
+		return options;
+	}
+
+
+
 }

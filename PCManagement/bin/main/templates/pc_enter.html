@@ -1,10 +1,167 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	<head>
+		<meta charset="UTF-8">
+		<title>PC新規登録</title>
+		<link rel="stylesheet" href="/css/bulma-0.7.5/css/bulma.css">
+		<link rel="stylesheet" href="/css/pc_enter.css">
+		<script src="/js/jquery-3.4.1.min.js "></script>
+		<script src="/js/pc_enter.js "></script>
+	</head>
+	<body>
 
-</body>
+		<header class = "hero is-info is-bold">
+			<h1 class = "title">PC新規登録画面</h1>
+		</header>
+		<div class="annotation-descripton">
+			<span>※は必須項目です</span>
+			<span class= "annotation-description-blue">＊は登録する場合、どちらも入力してください</span>
+		</div>
+
+		<form th:action="@{/pc_enter}" method="post" th:object="${enterPC}">
+			<table class = pc_enter_table border="1">
+				<tr class ="pc_enter_table_tr">
+					<td>
+						モデル名
+						<p class = "annotation">※</p>
+					</td>
+					<td>
+						<input type="text" class="input is-large is-model" name="pcName.name" th:value="*{pcName.name}">
+
+						<p class ="error" th:if="${#fields.detailedErrors('pcName.name')}" th:errors="*{pcName.name}"></p>
+					</td>
+					<td>PC区分
+						<p class = "annotation">※</p>
+					</td>
+					<td>
+						<select  name ="pcCategory" class="select is-medium">
+							<option th:each = "options : ${pcCategoryOptions}"
+							th:value = "${options.key}" th:text="${options.value}"></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>製造年月日</td>
+					 <td class = createAt_td>
+						<th:block th:object="${enteredDate}">
+
+							 <div class = createAtAll-div>
+								<div class = "createAt-div">
+									<input type="text" class="input is-medium is-create" name="year" th:value="*{year}">年
+									<p class = "annotation">※</p>
+								</div>
+								<div class = "createAt-div">
+									<input type="text" class="input is-medium is-create" name="month" th:value="*{month}">月
+									<p class = "annotation is-blue">＊</p>
+								</div>
+								<div class = "createAt-div">
+									<input type="text" class="input is-medium is-create" name="day" th:value="*{day}">日
+									<p class = "annotation is-blue">＊</p>
+								</div>
+							 </div>
+
+								<p class ="error" th:if="${#fields.detailedErrors('year')}" th:errors="*{year}"></p>
+								<p class ="error" th:if="${#fields.detailedErrors('month')}" th:errors="*{month}"></p>
+								<p class ="error" th:if="${#fields.detailedErrors('day')}" th:errors="*{day}"></p>
+								<p class ="error" th:if="${#fields.detailedErrors('setMonthAndDay')}" th:errors="*{setMonthAndDay}"></p>
+
+						</th:block>
+					 </td>
+
+					<td>
+						OS
+						<p class = "annotation">※</p>
+					</td>
+					<td class = "os_td">
+							<select name="os.osCategory" class="select is-large">
+								<option th:each = "options : ${osCategoryOptions}"
+								th:value = "${options.key}" th:text="${options.value}"></option>
+							</select>
+							<input type="text" th:field="*{os.osName.name}" class="input is-large is-os">
+						<p class ="error" th:if="${#fields.detailedErrors('os.osName.name')}" th:errors="*{os.osName.name}"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						CPU
+						<p class = "annotation">※</p>
+					</td>
+					<td>
+						<select name="cpu.cpuCategory" class="select is-large">
+							<option th:each = "options : ${cpuCategoryOptions}"
+							th:value = "${options.key}" th:text="${options.value}"></option>
+						</select>
+						<input type="text" class = "input is-large is-cpu" th:field="*{cpu.cpuName.name}">
+
+						<p class ="error" th:if="${#fields.detailedErrors('cpu.cpuName.name')}" th:errors="*{cpu.cpuName.name}"></p>
+					</td>
+					<td>
+						メモリ
+						<p class = "annotation">※</p>
+					</td>
+					<td class="memory-td">
+						<input type="text" th:field="*{memory.memoryCapacity.capacity}" class="input is-large is-memory">
+						<select name="memory.byteUnit" class="select is-large">
+							<option th:each = "options : ${byteUnitOptions}"
+							th:value = "${options.key}" th:text="${options.value}"></option>
+						</select>
+
+						<p class ="error" th:if="${#fields.detailedErrors('memory.memoryCapacity.capacity')}" th:errors="*{memory.memoryCapacity.capacity}"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						ストレージ
+						<p class = "annotation">※</p>
+					</td>
+					<td>
+						<select name="storage.storageCategory" class = "select is-large">
+							<option th:each = "options : ${storageCategoryOptions}"
+							th:value = "${options.key}" th:text="${options.value}"></option>
+						</select>
+						<input type="text" class = "input is-large is-storage" th:field="*{storage.storageCapacity.capacity}" >
+						<select name="storage.byteUnit" class= "select is-large">
+							<option th:each = "options : ${byteUnitOptions}"
+							th:value = "${options.key}" th:text="${options.value}"></option>
+						</select>
+
+						<p class ="error" th:if="${#fields.detailedErrors('storage.storageCapacity.capacity')}" th:errors="*{storage.storageCapacity.capacity}"></p>
+					</td>
+					<td>
+						office
+						<p class = "annotation">※</p>
+					</td>
+					<td class = "office_td">
+						<div class = "radio-div">
+							<p class="radio-p"><input type="radio" class = "office_exist" name="office.officeExist.exist" th:value=true>あり</p>
+							<p class="radio-p"><input type="radio" class = "office_exist" name="office.officeExist.exist" th:value=false checked="checked">なし</p>
+						</div>
+						<div class = "office_input_div">
+							<input disabled type="text" id="officeInput"  th:field="*{office.officeName.name}" class = "input is-large is-office">
+						</div>
+
+						<p class ="error"  th:if="${#fields.detailedErrors('office.officeName.name')}" th:errors="*{office.officeName.name}"></p>
+					</td>
+				</tr>
+				<tr>
+					<td>備考</td>
+					<td colspan="3">
+						<textarea class = "note_text" th:field="*{pcNote.note}"></textarea>
+						<p class ="error" th:if="${#fields.detailedErrors('pcNote.note')}" th:errors="*{pcNote.note}"></p>
+					</td>
+				</tr>
+			</table>
+
+			<div class = "columns" >
+				<div class = "column">
+					<a href="/top"><input type="button" value="PC一覧へ戻る" class ="button is-primary is-large is-fullwidth"/></a>
+				</div>
+				<div class = "column">
+					<p><input type="submit" value="確認" name="verify" class = "button is-primary is-large is-fullwidth"  /></p>
+				</div>
+			</div>
+		</form>
+
+	</body>
 </html>

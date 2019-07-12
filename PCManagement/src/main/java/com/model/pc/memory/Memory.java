@@ -1,8 +1,11 @@
 package com.model.pc.memory;
 
+import javax.validation.Valid;
+
 import com.model.unit.ByteUnit;
 
 public class Memory {
+	@Valid
 	private MemoryCapacity memoryCapacity;
 	private ByteUnit byteUnit;
 

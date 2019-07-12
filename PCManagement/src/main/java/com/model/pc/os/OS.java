@@ -1,7 +1,10 @@
 package com.model.pc.os;
 
+import javax.validation.Valid;
+
 public class OS {
 	private OSCategory osCategory;
+	@Valid
 	private OSName osName;
 
 	public OS() {

@@ -1,6 +1,11 @@
 package com.model.pc;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class PCNote {
+	@NotNull
+	@Size(max = 5000)
 	private String note;
 
 	public PCNote() {

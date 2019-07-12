@@ -1,7 +1,14 @@
 package com.model.pc;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class PCName {
+
+	@NotBlank
+	@Size (max = 100)
 	private String name;
+
 
 	public PCName() {
 
@@ -21,7 +28,6 @@ public class PCName {
 	public String toString() {
 		return "PCName [name=" + name + "]";
 	}
-
 
 
 

@@ -1,21 +1,40 @@
 package com.model.unit;
 
+import java.util.EnumMap;
+
 public enum ByteUnit {
-	 MB(3),
-	 GB(2),
-	 TB(1);
+	 tb("TB"),
+	 gb("GB"),
+	 mb("MB");
 
-	Integer sortBigger;
+	String byteUnitName;
 
 
-	private ByteUnit(Integer sortBigger) {
-		this.sortBigger = sortBigger;
+	private ByteUnit(String byteUnitName) {
+		this.byteUnitName = byteUnitName;
+	}
+
+	public static EnumMap<ByteUnit, String> options;
+
+	static {
+		options = new EnumMap<ByteUnit, String>(ByteUnit.class);
+		for(ByteUnit unit : ByteUnit.values()) {
+			options.put(unit,unit.byteUnitName);
+		}
+
+	}
+
+	public String getByteUnitName() {
+		return byteUnitName;
+	}
+
+	public static EnumMap<ByteUnit, String> getOptions() {
+		return options;
 	}
 
 
-	public Integer getSortBigger() {
-		return sortBigger;
-	}
+
+
 
 
 

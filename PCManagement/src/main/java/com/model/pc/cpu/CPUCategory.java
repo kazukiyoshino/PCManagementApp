@@ -1,18 +1,58 @@
 package com.model.pc.cpu;
 
+import java.util.EnumMap;
+
 public enum CPUCategory {
-	Intel(1),
-	AMD(2),
-	その他(3);
+	intel("Intel"),
+	amd("AMD"),
+	other("その他");
 
-	private Integer sortNumber;
+	private String cpuCategoryName;
 
-	private CPUCategory(Integer sortNumber) {
-		this.sortNumber = sortNumber;
+	private CPUCategory(String cpuCategoryName) {
+		this.cpuCategoryName = cpuCategoryName;
 	}
 
-	public Integer getSortNumber() {
-		return sortNumber;
+
+
+	public String getCpuCategoryName() {
+		return cpuCategoryName;
+	}
+
+	public static EnumMap<CPUCategory, String> options;
+
+	static {
+		options = new EnumMap<CPUCategory, String>(CPUCategory.class);
+		for(CPUCategory category : CPUCategory.values()) {
+			options.put(category,category.cpuCategoryName);
+		}
+
+	}
+
+
+
+	public static EnumMap<CPUCategory, String> getOptions() {
+		return options;
+	}
+	
+	
+
+
+
+	public void setCpuCategoryName(String cpuCategoryName) {
+		this.cpuCategoryName = cpuCategoryName;
+	}
+
+
+
+	public static void setOptions(EnumMap<CPUCategory, String> options) {
+		CPUCategory.options = options;
+	}
+
+
+
+	public String getValues(){
+		return CPUCategory.values().toString();
 	}
 
 }
